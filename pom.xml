@@ -19,7 +19,7 @@
         <lombok.version>1.16.20</lombok.version>
         <allure.version>2.6.0</allure.version>
         <cucumber.version>2.4.0</cucumber.version>
-        <spring.version>4.3.16.RELEASE</spring.version>
+        <io.github.symonk.spring.version>4.3.16.RELEASE</io.github.symonk.spring.version>
         <temyers.version>5.0.0</temyers.version>
         <logstash.version>5.1</logstash.version>
         <rest-assured.version>3.1.0</rest-assured.version>
@@ -111,28 +111,28 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
+            <artifactId>io.github.symonk.spring-core</artifactId>
+            <version>${io.github.symonk.spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${spring.version}</version>
+            <artifactId>io.github.symonk.spring-tx</artifactId>
+            <version>${io.github.symonk.spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
+            <artifactId>io.github.symonk.spring-web</artifactId>
+            <version>${io.github.symonk.spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
+            <artifactId>io.github.symonk.spring-test</artifactId>
+            <version>${io.github.symonk.spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
+            <artifactId>io.github.symonk.spring-context</artifactId>
+            <version>${io.github.symonk.spring.version}</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -151,7 +151,7 @@
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-spring</artifactId>
+            <artifactId>cucumber-io.github.symonk.spring</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
         <dependency>
