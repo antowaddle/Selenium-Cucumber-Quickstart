@@ -1,6 +1,6 @@
 package io.github.symonk.spring;
 
-import io.github.symonk.webdriver.Driver;
+import io.github.symonk.runvalidation.TestExecutionListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
 public class SpringConfiguration {
 
     @Bean
-    public Driver driver() {
-        return new Driver(null);
+    public TestExecutionListener testExecutionListener() {
+        return new TestExecutionListener();
     }
 
 }

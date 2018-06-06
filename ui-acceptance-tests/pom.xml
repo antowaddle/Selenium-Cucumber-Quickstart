@@ -11,7 +11,7 @@
 
     <artifactId>ui-acceptance-tests</artifactId>
     <version>1</version>
-    <name>ui-acceptance</name>
+    <name>ui-acceptance-tests</name>
     <url>http://maven.apache.org</url>
 
     <build>
@@ -28,7 +28,7 @@
             <plugin>
                 <groupId>com.github.temyers</groupId>
                 <artifactId>cucumber-jvm-parallel-plugin</artifactId>
-                <version>4.2.0</version>
+                <version>${temyers.version}</version>
                 <executions>
                     <execution>
                         <id>generateRunners</id>
