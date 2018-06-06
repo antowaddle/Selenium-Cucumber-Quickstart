@@ -9,6 +9,5 @@ Feature: Feature number 2
     And I am on the homepage
 
   Scenario: User adopts a puppy 003
-  Puppy adoption scenarios 003
     When I adopt a puppy providing "Order A"
     Then I should see the successful adoption message

@@ -31,7 +31,7 @@
         <testng.version>6.14.2</testng.version>
         <awaitility.version>3.1.0</awaitility.version>
         <jackson.version>2.9.5</jackson.version>
-        <logback.version>1.3.0-alpha3</logback.version>
+        <logback.version>1.3.0-alpha4</logback.version>
         <slf4j.version>1.8.0-beta1</slf4j.version>
         <apache.commons.collections.version>4.1</apache.commons.collections.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,6 +41,7 @@
         <gui.feature.tags>@regression</gui.feature.tags>
         <aspectj.version>1.9.1</aspectj.version>
         <spring.version>4.3.16.RELEASE</spring.version>
+        <maven.surefire.version>2.21.0</maven.surefire.version>
     </properties>
 
     <dependencies>
@@ -69,7 +70,6 @@
             <artifactId>logstash-logback-encoder</artifactId>
             <version>${logstash.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber2-jvm</artifactId>
@@ -88,11 +88,6 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-Access</artifactId>
             <version>${logback.version}</version>
         </dependency>
         <dependency>
@@ -186,7 +181,11 @@
             <artifactId>awaitility</artifactId>
             <version>${awaitility.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven.surefire.version}</version>
+        </dependency>
     </dependencies>
 
 
