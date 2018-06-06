@@ -1,0 +1,48 @@
+<configuration>
+    <timestamp key="time" datePattern="yyyy-MM-dd'_'HH-mm-ss.SSS"/>
+    <appender name="RootSiftAppender" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <Key>scenario_name</Key>
+            <DefaultValue>jvm_logs</DefaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE-${testname}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <File>target\\test_logs\\${scenario_name}-${time}.json</File>
+                <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+                    <timestampPattern>yyyy-MM-dd'_'HH-mm-ss.SSS</timestampPattern>
+                    <version>Quickstart-Framework</version>
+                    <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
+                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <maxDepthPerThrowable>30</maxDepthPerThrowable>
+                        <maxLength>2048</maxLength>
+                        <shortenedClassNameLength>20</shortenedClassNameLength>
+                        <exclude>sun\.reflect\..*\.invoke.*</exclude>
+                        <exclude>net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>
+                        <rootCauseFirst>true</rootCauseFirst>
+                        <inlineHash>true</inlineHash>
+                    </throwableConverter>
+                </encoder>
+                <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+                    <FileNamePattern>${scenario_name}.%i.json</FileNamePattern>
+                    <MinIndex>1</MinIndex>
+                    <MaxIndex>100</MaxIndex>
+                </rollingPolicy>
+                <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+                    <MaxFileSize>50MB</MaxFileSize>
+                </triggeringPolicy>
+            </appender>
+        </sift>
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%n %d{HH:mm:ss} %thread %level %logger{0} %msg</pattern>
+        </encoder>
+    </appender>
+
+    <root level="RootSiftAppender">
+        <appender-ref ref="RootSiftAppender"/>
+    </root>
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
