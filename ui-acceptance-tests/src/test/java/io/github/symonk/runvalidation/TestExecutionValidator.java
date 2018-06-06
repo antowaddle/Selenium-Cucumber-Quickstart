@@ -11,7 +11,7 @@ public class TestExecutionValidator extends AbstractTestNGSpringContextTests {
 
     @Test
     public void validateRunConditionsHere() {
-        
+        log.info("Test run instantiated...validating conditions");
     }
 
 }

@@ -19,7 +19,6 @@
         <lombok.version>1.16.20</lombok.version>
         <allure.version>2.6.0</allure.version>
         <cucumber.version>2.4.0</cucumber.version>
-        <io.github.symonk.spring.version>4.3.16.RELEASE</io.github.symonk.spring.version>
         <temyers.version>5.0.0</temyers.version>
         <logstash.version>5.1</logstash.version>
         <rest-assured.version>3.1.0</rest-assured.version>
@@ -35,9 +34,21 @@
         <logback.version>1.3.0-alpha3</logback.version>
         <slf4j.version>1.8.0-beta1</slf4j.version>
         <apache.commons.collections.version>4.1</apache.commons.collections.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <selenium.version>3.12.0</selenium.version>
+        <forked.jvm.count>3</forked.jvm.count>
+        <jira.endpoint>https://jira.company.com/browser{}</jira.endpoint>
+        <gui.feature.tags>@regression</gui.feature.tags>
+        <aspectj.version>1.9.1</aspectj.version>
+        <spring.version>4.3.16.RELEASE</spring.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -111,28 +122,29 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>io.github.symonk.spring-core</artifactId>
-            <version>${io.github.symonk.spring.version}</version>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>io.github.symonk.spring-tx</artifactId>
-            <version>${io.github.symonk.spring.version}</version>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>io.github.symonk.spring-web</artifactId>
-            <version>${io.github.symonk.spring.version}</version>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>io.github.symonk.spring-test</artifactId>
-            <version>${io.github.symonk.spring.version}</version>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>io.github.symonk.spring-context</artifactId>
-            <version>${io.github.symonk.spring.version}</version>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -147,11 +159,6 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
-            <version>${cucumber.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-io.github.symonk.spring</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
         <dependency>
