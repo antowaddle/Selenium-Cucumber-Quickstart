@@ -18,7 +18,7 @@ Set-Location -Path $PSScriptRoot
 cmd.exe /c "mvn clean"
 
 # Execute full regression tests (scenarios tagged with '@regression' //todo -> customise more and more of these options or take varargs...
-cmd.exe /c "mvn test -Dbrowser=$Browser -Dgui.feature.tags=@regression -Drun.on.grid=false -Dforked.jvm.count=3"
+cmd.exe /c "mvn test -Dbrowser=$Browser -Dgui.feature.tags=@regression -Drun.on.grid=false -DthreadCount=5"
 
 
 # Display the report locally if ShouldDisplayReport is true

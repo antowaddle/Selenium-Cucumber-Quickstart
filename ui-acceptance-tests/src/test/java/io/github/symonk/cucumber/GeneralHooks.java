@@ -1,7 +1,8 @@
 package io.github.symonk.cucumber;
 
-import cucumber.api.java.Before;
+import cucumber.api.java.After;
 import io.github.symonk.spring.SpringConfiguration;
+import io.github.symonk.webdriver.DriverFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -9,9 +10,9 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration(classes = SpringConfiguration.class)
 public class GeneralHooks {
 
-    @Before
+    @After
     public void recogniseSpringPlaceHolder() {
-
+        DriverFactory.getInstance().getDriver().quit();
     }
 
 }
