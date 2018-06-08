@@ -1,18 +1,19 @@
 package io.github.symonk.stepdefinitions;
 
 import cucumber.api.java.en.Given;
-import io.github.symonk.webdriver.DriverFactory;
-import org.openqa.selenium.WebDriver;
+import cucumber.api.java8.En;
+import io.github.symonk.webdriver.Driver;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class GeneralSteps {
+public class GeneralSteps implements En {
 
-    private WebDriver driver = DriverFactory.getInstance().getDriver();
+    @Autowired private Driver driver;
 
     @Given("^Something or other$")
-    public void some_or_other() throws Exception {
+    public void something_or_other() {
         driver.get("http://www.bbc.co.uk");
-        Thread.sleep(1500);
     }
+
 
 }

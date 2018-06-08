@@ -1,5 +1,6 @@
 package io.github.symonk.webdriver;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,7 +18,7 @@ public class DriverFactory {
         return instance;
     }
 
-    ThreadLocal<WebDriver> driver = ThreadLocal.withInitial(() -> getDriverType());
+    ThreadLocal<WebDriver> driver = ThreadLocal.withInitial(DriverFactory::getDriverType);
 
     public WebDriver getDriver(){
         return driver.get();
@@ -29,6 +30,7 @@ public class DriverFactory {
     }
 
     public static WebDriver getDriverType() {
+        WebDriverManager.chromedriver().setup();
         return new ChromeDriver();
     }
 
