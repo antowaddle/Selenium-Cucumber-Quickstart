@@ -70,9 +70,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.version}</version>
                 <configuration>
-                    <excludes>
-                        <exclude>**/TestExecutionValidator.java</exclude>
-                    </excludes>
                     <testFailureIgnore>false</testFailureIgnore>
                     <printSummary>false</printSummary>
                     <threadCount>5</threadCount>
@@ -84,6 +81,10 @@
                         <jvm.number>JVM_NUMBER_${surefire.forkNumber}</jvm.number>
                     </systemPropertyVariables>
                     <systemProperties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.github.symonk.runvalidation.TestExecutionListenerImpl</value>
+                        </property>
                         <property>
                             <name>allure.results.directory</name>
                             <value>${project.build.directory}/allure-results</value>
@@ -102,18 +103,6 @@
                         </property>
                     </systemProperties>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>test-init</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <configuration>
-                            <test>TestExecutionValidator</test>
-                        </configuration>
-                    </execution>
-                </executions>
                 <dependencies>
                     <dependency>
                         <groupId>org.aspectj</groupId>

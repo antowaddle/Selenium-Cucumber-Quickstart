@@ -1,19 +1,20 @@
 package io.github.symonk.stepdefinitions;
 
 import cucumber.api.java.en.Given;
-import cucumber.api.java8.En;
+import io.github.symonk.spring.AutomationProperties;
 import io.github.symonk.webdriver.Driver;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@Slf4j
+public class GeneralSteps {
 
-public class GeneralSteps implements En {
+  @Autowired private Driver driver;
+  @Autowired private AutomationProperties properties;
 
-    @Autowired private Driver driver;
-
-    @Given("^Something or other$")
-    public void something_or_other() {
-        driver.get("http://www.bbc.co.uk");
-    }
-
-
+  @Given("^Something or other$")
+  public void something_or_other() {
+    driver.get("http://www.bbc.co.uk");
+    for (int i = 0; i < 100; i++) log.info(properties.getBaseEnvironmentUrl());
+  }
 }
