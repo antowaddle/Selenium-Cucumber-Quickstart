@@ -72,8 +72,8 @@
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
                     <printSummary>false</printSummary>
-                    <threadCount>5</threadCount>
-                    <parallel>classes</parallel>
+                    <forkCount>3</forkCount>
+                    <reuseForks>true</reuseForks>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>

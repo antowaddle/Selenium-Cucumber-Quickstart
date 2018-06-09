@@ -12,6 +12,22 @@ public class AutomationProperties {
   }
 
   public String getSlackApiToken() {
-    return environment.getProperty("slack.api.token");
+    return environment.getProperty("slack.api.token").toUpperCase();
+  }
+
+  public boolean getRunOnSeleniumGrid() {
+    return Boolean.valueOf(environment.getProperty("use.selenium.grid"));
+  }
+
+  public String getBrowser() {
+    return environment.getProperty("browser").toUpperCase();
+  }
+
+  public String getSeleniumGridEndpoint() {
+    return environment.getProperty("selenium.grid.endpoint");
+  }
+
+  public String getPlatform() {
+    return environment.getProperty("platform").toUpperCase();
   }
 }

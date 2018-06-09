@@ -6,7 +6,6 @@ import cucumber.api.java.Before;
 import io.github.symonk.helpers.logging.Loggable;
 import io.github.symonk.spring.SpringConfiguration;
 import io.github.symonk.webdriver.Driver;
-import io.github.symonk.webdriver.DriverFactory;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +40,7 @@ public class GeneralHooks {
   @Before
   @Step("Initialising logger")
   public void initialise(Scenario scenario) {
-    logger.startLogging(scenario.getName());
+    startLogger(scenario);
   }
 
   @After()
@@ -59,12 +58,8 @@ public class GeneralHooks {
   }
 
   private void attachPageSourceIfNecessary(Scenario scenario) {
-    if (scenario
-        .getSourceTagNames()
-        .stream()
-        .noneMatch(str -> str.trim().equals("@no_page_source"))) {
-      log.info(
-          "Attaching page source because scenario was not annotated with @no_page_source cucumber tag");
+    if (scenario.getSourceTagNames().stream().noneMatch(str -> str.trim().equals("@exclude-page-source"))) {
+      log.info("Attaching page source because scenario was not annotated with @exclude-page-source cucumber tag");
       getPageSourceAsAttachment();
     }
   }
@@ -75,12 +70,6 @@ public class GeneralHooks {
     } catch (IOException exception) {
       log.error("Exception occurred when attaching failed scenario log files", exception);
     }
-  }
-
-  @After
-  @Step("Quit the threaded driver instance")
-  public void recogniseSpringPlaceHolder() {
-    DriverFactory.getInstance().getDriver().quit();
   }
 
   @Attachment(value = "Screenshot", type = "image/png")
@@ -124,9 +113,10 @@ public class GeneralHooks {
 
   private void clearSessionData() {
     log.info("Deleting cookie(s) for the current domain");
-    driver.manage().deleteAllCookies();
+    driver.clearCookies();
     log.info("Delete both local and session storage data");
-    driver.clearSessionStorageAndLocalStorage();
+    driver.clearLocalStorage();
+    driver.clearSessionStorage();
   }
 
   private File[] listFilesMatching(File root, String regex) {

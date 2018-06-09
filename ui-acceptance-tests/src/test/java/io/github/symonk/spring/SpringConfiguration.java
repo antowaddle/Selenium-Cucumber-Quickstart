@@ -6,6 +6,7 @@ import io.github.symonk.helpers.slack.SlackHelper;
 import io.github.symonk.helpers.slack.Slackable;
 import io.github.symonk.runvalidation.TestExecutionListener;
 import io.github.symonk.webdriver.Driver;
+import io.github.symonk.webdriver.DriverSupplier;
 import lombok.extern.slf4j.Slf4j;
 import net.gpedro.integrations.slack.SlackApi;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +25,11 @@ public class SpringConfiguration {
 
   @Bean
   public Driver driver() {
-    return new Driver();
+    return new Driver(driverSupplier());
+  }
+
+  @Bean DriverSupplier driverSupplier() {
+    return new DriverSupplier(properties());
   }
 
   @Bean
