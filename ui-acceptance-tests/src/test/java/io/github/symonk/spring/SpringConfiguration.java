@@ -1,9 +1,8 @@
 package io.github.symonk.spring;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.symonk.helpers.logging.LogHelper;
 import io.github.symonk.helpers.logging.Loggable;
-import io.github.symonk.helpers.slack.SlackHelper;
-import io.github.symonk.helpers.slack.Slackable;
 import io.github.symonk.runvalidation.TestExecutionListener;
 import io.github.symonk.webdriver.Driver;
 import io.github.symonk.webdriver.DriverSupplier;
@@ -17,6 +16,7 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource(value = {"classpath:/framework.properties"})
 public class SpringConfiguration {
+  
 
   @Bean
   public TestExecutionListener testExecutionListener() {

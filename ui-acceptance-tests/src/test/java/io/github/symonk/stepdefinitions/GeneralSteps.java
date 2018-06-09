@@ -14,6 +14,6 @@ public class GeneralSteps {
 
   @Given("^Something or other$")
   public void something_or_other() {
-    //initialise hooks with a dummy test
+    driver.get(properties.getBaseEnvironmentUrl());
   }
 }
