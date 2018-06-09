@@ -70,6 +70,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.version}</version>
                 <configuration>
+                    <excludes>
+                        <exclude>**/TestExecutionValidator.java</exclude>
+                    </excludes>
                     <testFailureIgnore>false</testFailureIgnore>
                     <printSummary>false</printSummary>
                     <forkCount>3</forkCount>
@@ -103,6 +106,18 @@
                         </property>
                     </systemProperties>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>test-init</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <test>TestExecutionValidator</test>
+                        </configuration>
+                    </execution>
+                </executions>
                 <dependencies>
                     <dependency>
                         <groupId>org.aspectj</groupId>
