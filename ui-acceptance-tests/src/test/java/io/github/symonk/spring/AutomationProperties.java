@@ -1,5 +1,6 @@
 package io.github.symonk.spring;
 
+import io.github.symonk.helpers.localisation.LanguageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
@@ -30,4 +31,9 @@ public class AutomationProperties {
   public String getPlatform() {
     return environment.getProperty("platform").toUpperCase();
   }
+
+  public LanguageType getLanguage() {
+    return LanguageType.valueOf(environment.getProperty("language").toUpperCase());
+  }
+
 }
