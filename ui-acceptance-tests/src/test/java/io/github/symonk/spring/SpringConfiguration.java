@@ -22,7 +22,6 @@ public class SpringConfiguration {
     WebDriverManager.chromedriver().setup();
   }
 
-
   @Bean
   public TestExecutionListener testExecutionListener() {
     return new TestExecutionListener();

@@ -26,8 +26,7 @@ public enum LanguageType implements ParsesProperties {
 
   public Map<String, String> getResources(String language) {
     Properties tempProperties = new Properties();
-    Map<String, String> mappedProperties = new HashMap<>();
-    try (InputStream inputStream = LanguageType.class.getResourceAsStream("/localisation/" + language + ".properties")) {
+    try (InputStream inputStream = LanguageType.class.getResourceAsStream("/localisation_files/" + language + ".properties")) {
       tempProperties.load(inputStream);
     } catch (IOException e) {
       throw new InvalidArgumentException("Language specified at runtime is not supported!");
