@@ -36,4 +36,8 @@ public class AutomationProperties {
     return LanguageType.valueOf(environment.getProperty("language").toUpperCase());
   }
 
+  public int getExplicitWaitTimeout() {
+    return Integer.valueOf(environment.getProperty("explicit.wait.timeout.seconds"));
+  }
+
 }
