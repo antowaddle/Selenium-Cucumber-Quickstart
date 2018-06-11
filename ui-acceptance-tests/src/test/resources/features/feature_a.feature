@@ -7,10 +7,5 @@ Feature: Feature number 1
 
   Scenario: User adopts a puppy 002
     Given the puppy adoption page has been loaded
-    When brook is adopted with the following options:
-    | option    |
-    | collar    |
-    | toy       |
-    | carrier   |
-    | vet visit |
-    Then the price of adoption is 312.87
+    When brook is adopted successfully
+    Then the adoption successful message is shown
