@@ -25,7 +25,7 @@ public class PuppyAdoptionHomePage extends AbstractBasePage {
     }
 
     public PuppyAdoptionHomePage open() {
-        webdriver.get(pageUrl);
+        getWebdriver().get(pageUrl);
         return this;
     }
 
