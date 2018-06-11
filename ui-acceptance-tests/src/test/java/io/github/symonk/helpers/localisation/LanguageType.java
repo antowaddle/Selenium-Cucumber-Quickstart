@@ -1,5 +1,6 @@
 package io.github.symonk.helpers.localisation;
 
+import io.github.symonk.common.exceptions.InvalidLanguageSpecifiedException;
 import org.openqa.selenium.InvalidArgumentException;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ public enum LanguageType implements ParsesProperties {
     try (InputStream inputStream = LanguageType.class.getResourceAsStream("/localisation_files/" + language + ".properties")) {
       tempProperties.load(inputStream);
     } catch (IOException e) {
-      throw new InvalidArgumentException("Language specified at runtime is not supported!");
+      throw new InvalidLanguageSpecifiedException("Language specified at runtime is not supported!");
     }
     return tempProperties
         .entrySet()

@@ -1,5 +1,7 @@
 package io.github.symonk.webdriver;
 
+import io.github.symonk.common.exceptions.InvalidBrowserSpecifiedException;
+import io.github.symonk.common.exceptions.InvalidUrlException;
 import io.github.symonk.spring.AutomationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.InvalidArgumentException;
@@ -34,7 +36,7 @@ public class DriverSupplier {
     if (useSeleniumGrid)
       log.info("RemoteWebDriver and selenium grid endpoint: " + seleniumGridEndpoint);
     if (!isDriverChrome() && !isDriverFirefox())
-      throw new InvalidArgumentException("Unsupported browser type specified at runtime");
+      throw new InvalidBrowserSpecifiedException("Unsupported browser type specified at runtime");
     return buildDriver();
   }
 
@@ -58,7 +60,7 @@ public class DriverSupplier {
     try {
       temp = new URL(seleniumGridEndpoint);
     } catch (MalformedURLException exception) {
-      throw new InvalidArgumentException(
+      throw new InvalidUrlException(
           "Specified grid endpoint was not valid: " + seleniumGridEndpoint);
     }
 
