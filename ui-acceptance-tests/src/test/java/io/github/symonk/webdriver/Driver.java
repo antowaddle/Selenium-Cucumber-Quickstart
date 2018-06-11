@@ -1,6 +1,7 @@
 package io.github.symonk.webdriver;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jsoup.helper.StringUtil;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,17 +55,21 @@ public class Driver extends EventFiringWebDriver {
   }
 
   public void closeAllSpawnedBrowserTabs(String tabToKeep) {
-    Set<String> openHandles = getWindowHandles();
-    if(openHandles.size() == 1) throw new InvalidArgumentException("cannot close the last remaining tab: " + tabToKeep);
-    openHandles.forEach(tab -> {
-      if (!tab.equals(tabToKeep)) {
-        log.info("Not parent tab found, switching and closing it");
-        switchTo().window(tab).close();
-      }
-    });
-
-    log.info("Switching control back to the parent tab");
-    switchTo().window(tabToKeep).close();
+    Set<String> handles = getWindowHandles();
+    if (StringUtil.isBlank(tabToKeep) || handles.size() == 1) {
+      log.error("invalid window handle was passed or you tried to manually close the last remaining browser tab");
+      log.error("not attempting any tab interactions, terminating the method...");
+      return;
+    }
+    handles.forEach(
+            (handleName) -> {
+              if (!handleName.equals(tabToKeep)) {
+                log.info("found a non parent tab, closing it");
+                switchTo().window(handleName).close();
+              }
+            });
+    log.info("finished tab scanning... switch context to the main parent tab");
+    switchTo().window(tabToKeep);
   }
 
 }
