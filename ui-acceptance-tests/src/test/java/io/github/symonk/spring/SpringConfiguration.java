@@ -1,6 +1,5 @@
 package io.github.symonk.spring;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.symonk.cucumber.TestWorld;
 import io.github.symonk.helpers.localisation.ResourceHelper;
 import io.github.symonk.helpers.logging.LogHelper;
@@ -20,10 +19,6 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource(value = {"classpath:/framework.properties"})
 public class SpringConfiguration {
-
-  static {
-    WebDriverManager.chromedriver().setup();
-  }
 
   @Bean
   public PuppyAdoptionHomePage puppyAdoptionHomePage() {
