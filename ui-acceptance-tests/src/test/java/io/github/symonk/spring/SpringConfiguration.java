@@ -1,6 +1,7 @@
 package io.github.symonk.spring;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.symonk.cucumber.TestWorld;
 import io.github.symonk.helpers.localisation.ResourceHelper;
 import io.github.symonk.helpers.logging.LogHelper;
 import io.github.symonk.helpers.logging.Loggable;
@@ -66,5 +67,10 @@ public class SpringConfiguration {
   @Bean
   public ResourceHelper resourceHelper() {
     return new ResourceHelper(properties().getLanguage());
+  }
+
+  @Bean
+  public TestWorld testWorld() {
+    return new TestWorld();
   }
 }
