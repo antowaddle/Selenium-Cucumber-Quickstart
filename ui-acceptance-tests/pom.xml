@@ -26,6 +26,26 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>3.16.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>cucumber_example</projectName>
+                            <outputDirectory>target/cucumber-report</outputDirectory>
+                            <cucumberOutput>/target/json</cucumberOutput>
+                            <buildNumber>42</buildNumber>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.github.temyers</groupId>
                 <artifactId>cucumber-jvm-parallel-plugin</artifactId>
                 <version>${temyers.version}</version>
@@ -38,8 +58,8 @@
                         </goals>
                         <configuration>
                             <glue>
-                                <package>io.github.symonk.stepdefinitions</package>
-                                <package>io.github.symonk.cucumber</package>
+                                <package>io.github.anthony.stepdefinitions</package>
+                                <package>io.github.anthony.cucumber</package>
                             </glue>
                             <outputDirectory>${project.build.directory}/generated-test-sources/cucumber
                             </outputDirectory>
@@ -49,6 +69,11 @@
                                 <plugin>
                                     <name>io.qameta.allure.cucumber2jvm.AllureCucumber2Jvm</name>
                                     <noOutput>true</noOutput>
+                                </plugin>
+                                <plugin>
+                                    <name>json</name>
+                                    <extension>json</extension>
+                                    <outputDirectory>target/cucumber-parallel</outputDirectory>
                                 </plugin>
                             </plugins>
                             <strict>true</strict>
@@ -60,15 +85,36 @@
                             <namingScheme>pattern</namingScheme>
                             <namingPattern>{f}{c}Test</namingPattern>
                             <parallelScheme>SCENARIO</parallelScheme>
-                            <packageName>io.github.symonk.runners</packageName>
+                            <packageName>io.github.anthony.runners</packageName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>3.16.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>cucumber_example</projectName>
+                            <outputDirectory>target/cucumber-parallel</outputDirectory>
+                            <cucumberOutput>target/cucumber-parallel</cucumberOutput>
+                            <buildNumber>42</buildNumber>
+
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${maven.failsafe.version}</version>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
                 <configuration>
                     <excludes>
                         <exclude>**/TestExecutionValidator.java</exclude>
@@ -104,7 +150,7 @@
                         <id>test-init</id>
                         <phase>process-test-classes</phase>
                         <goals>
-                            <goal>integration-test</goal>
+                            <goal>test</goal>
                         </goals>
                         <configuration>
                             <test>TestExecutionValidator</test>

@@ -74,6 +74,12 @@
         </dependency>
 
         <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>maven-cucumber-reporting</artifactId>
+            <version>3.8.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber2-jvm</artifactId>
             <version>${allure.version}</version>
